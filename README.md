@@ -1,1 +1,1 @@
-# Neural-color-generator
+# Neural-Color-Generator
