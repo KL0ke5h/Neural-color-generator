@@ -1,28 +1,43 @@
 # Neural Color Generator
 
-This project implements an AI-powered color generator that predicts RGB values from textual color descriptions. It utilizes a transformer architecture with attention mechanisms, leveraging pre-trained GloVe word embeddings for robust and perceptually accurate color predictions.
+## Overview
+The **Neural Color Generator** is an AI-powered tool that **predicts RGB color values from text descriptions** using a t**ransformer-based neural network**. It leverages pretrained GloVe word embeddings and a multi-head attention mechanism to generate accurate color predictions. The project includes a Gradio-based web interface for interactive use and a CI/CD pipeline for deployment to Hugging Face Spaces.
 
 ## Features
+- **Color Prediction**: Predicts RGB values from color names or descriptions.
+- **Transformer Architecture**: Utilizes multi-head attention and GloVe embeddings for robust text-to-color mapping.
+- **Gradio Interface**: Interactive web interface for real-time color predictions.
+- **CI/CD Pipeline**: Automated deployment to Hugging Face Spaces via GitHub Actions.
+- **Data Augmentation**: Enhances dataset with synthetic color names and RGB variations.
+- **Performance Metrics**: Evaluates predictions using Mean Absolute Error (MAE) and CIEDE2000 color difference.
 
-* Predicts RGB color values from textual color names or descriptions.
-* Uses a transformer architecture with multi-head attention for text processing.
-* Incorporates pre-trained GloVe word embeddings for semantic understanding of color names.
-* Employs CIEDE2000 color difference metric for accurate evaluation.
-* Provides a Gradio-based web interface for interactive color prediction.
-* Supports model packaging for deployment.
 
-## Dependencies
+# Project Structure
 
-* Python 3.9
-* TensorFlow 2.x
-* colormath
-* gradio
-* transformers
-* pygithub
-* huggingface_hub
+**NeuralColorGenerator.ipynb:** Main Jupyter notebook with data processing, model training, and Gradio interface.
+**github_actions_workflow.yml:** GitHub Actions configuration for CI/CD.
+**char_tokenizer.pkl / word_tokenizer.pkl:** Saved tokenizers for character and word-level processing.
+**color_transformer_final.keras:** Saved transformer model.
+**glove/:** Directory for GloVe embeddings.
+**test_color_model.py:** Test script for CI/CD (create this for production use).
 
-## Installation
+Dataset
+The project uses a colors.csv dataset containing color names and their corresponding RGB values. The dataset is augmented with:
 
-1. Clone the repository: `git clone <repository_url>`
-2. Install the required packages: `pip install -r requirements.txt`
-3. Mount Google Drive and adjust the file path to your dataset:
+Synthetic color name variations (e.g., character deletion, swapping).
+RGB noise to preserve natural color distribution.
+
+# Model Architecture
+
+**Input:** Character-level and word-level tokenized color descriptions.
+**Embedding:** GloVe 6B 100d pretrained word embeddings.
+**Layers:** Transformer with multi-head attention, bidirectional LSTM, and dense layers.
+**Output:** RGB values (0-255) for the predicted color.
+**Metrics:** MAE and CIEDE2000 for evaluating color accuracy.
+
+# Deployment
+The model is deployed to Hugging Face Spaces using Gradio for the frontend. The **CI/CD pipeline**:
+
+*Runs tests using test_color_model.py.
+*Deploys the model and interface to a Hugging Face Space.
+*Requires a Hugging Face API token (HF_TOKEN) stored in GitHub Secrets.
