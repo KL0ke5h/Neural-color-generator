@@ -14,14 +14,14 @@ The **Neural Color Generator** is an AI-powered tool that **predicts RGB color v
 
 # Project Structure
 
-**NeuralColorGenerator.ipynb:** Main Jupyter notebook with data processing, model training, and Gradio interface.
-**github_actions_workflow.yml:** GitHub Actions configuration for CI/CD.
-**char_tokenizer.pkl / word_tokenizer.pkl:** Saved tokenizers for character and word-level processing.
-**color_transformer_final.keras:** Saved transformer model.
-**glove/:** Directory for GloVe embeddings.
-**test_color_model.py:** Test script for CI/CD (create this for production use).
+- **NeuralColorGenerator.ipynb:** Main Jupyter notebook with data processing, model training, and Gradio interface.
+- **github_actions_workflow.yml:** GitHub Actions configuration for CI/CD.
+- **char_tokenizer.pkl / word_tokenizer.pkl:** Saved tokenizers for character and word-level processing.
+- **color_transformer_final.keras:** Saved transformer model.
+- **glove/:** Directory for GloVe embeddings.
+- **test_color_model.py:** Test script for CI/CD (create this for production use).
 
-Dataset
+# Dataset
 The project uses a colors.csv dataset containing color names and their corresponding RGB values. The dataset is augmented with:
 
 Synthetic color name variations (e.g., character deletion, swapping).
@@ -29,15 +29,14 @@ RGB noise to preserve natural color distribution.
 
 # Model Architecture
 
-**Input:** Character-level and word-level tokenized color descriptions.
-**Embedding:** GloVe 6B 100d pretrained word embeddings.
-**Layers:** Transformer with multi-head attention, bidirectional LSTM, and dense layers.
-**Output:** RGB values (0-255) for the predicted color.
-**Metrics:** MAE and CIEDE2000 for evaluating color accuracy.
+- **Input:** Character-level and word-level tokenized color descriptions.
+- **Embedding:** GloVe 6B 100d pretrained word embeddings.
+- **Layers:** Transformer with multi-head attention, bidirectional LSTM, and dense layers.
+- **Output:** RGB values (0-255) for the predicted color.
+- **Metrics:** MAE and CIEDE2000 for evaluating color accuracy.
 
 # Deployment
 The model is deployed to Hugging Face Spaces using Gradio for the frontend. The **CI/CD pipeline**:
 
-*Runs tests using test_color_model.py.
-*Deploys the model and interface to a Hugging Face Space.
-*Requires a Hugging Face API token (HF_TOKEN) stored in GitHub Secrets.
+- Runs tests using test_color_model.py.
+- Deploys the model and interface to a Hugging Face Space.
